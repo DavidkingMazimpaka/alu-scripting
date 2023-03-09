@@ -9,17 +9,16 @@ import sys
 
 
 def top_ten(subreddit):
-    """
-    returning the hot post
-    """
+    """return hot post"""
     if len(sys.argv) < 2:
         return print(None)
     else:
-        url_link = "https://www.reddit.com/r/{}/hot.json?limit=10".format(subreddit)
+        url = "https://www.reddit.com/r/{}/hot.json?limit=10".format(subreddit)
         headers = {"User-Agent": "Mozilla/5.0"}
-        res = requests.get(url_link, headers=headers, allow_redirects=False)
-        if res.status_code != 200:
+        result = requests.get(url, headers=headers, allow_redirects=False)
+        listing = []
+        if result.status_code != 200:
             return print(None)
-        body = json.loads(res.text)
-        for i in body["data"]["Employees"]:
+        body = json.loads(result.text)
+        for i in body["data"]["children"]:
             print(i["data"]["title"])
