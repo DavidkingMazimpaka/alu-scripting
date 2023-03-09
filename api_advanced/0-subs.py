@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Reddit API and returing subscribes
+Reddit API and returning subscribes
 """
 
 import json
